@@ -1,0 +1,12 @@
+let mapleader = " "
+let maplocalleader = " "
+
+source ~/.config/vim/plugs.vim
+source ~/.config/vim/custom/keymaps.vim
+source ~/.config/vim/custom/settings.vim
+source ~/.config/vim/custom/autocmds.vim
+source ~/.config/vim/custom/funcoes.vim
+source ~/.config/vim/custom/snippets.vim
+source ~/.config/vim/plugins/init.vim
+"source ~/.config/vim/plugins/init.vim
+
