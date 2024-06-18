@@ -29,14 +29,14 @@
 }
 
 .window-tiled-border {
-  border-width: 3px;
+  border-width: 2px;
   border-color: rgba(236, 94, 94, 1);
   border-style: solid;
   border-radius: 14px;
 }
 
 .window-split-border {
-  border-width: 3px;
+  border-width: 2px;
   border-color: rgba(255, 246, 108, 1);
   border-style: solid;
   border-radius: 14px;
@@ -55,7 +55,7 @@
 }
 
 .window-stacked-border {
-  border-width: 3px;
+  border-width: 2px;
   border-color: rgba(247, 162, 43, 1);
   border-style: solid;
   border-radius: 14px;
@@ -101,7 +101,7 @@
 }
 
 .window-floated-border {
-  border-width: 3px;
+  border-width: 2px;
   border-color: rgba(180, 167, 214, 1);
   border-style: solid;
   border-radius: 14px;

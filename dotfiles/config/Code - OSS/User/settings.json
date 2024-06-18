@@ -208,7 +208,7 @@
         { "before": [ "<Leader>", "t", "o" ], "commands": [ ":tabonly" ] },
         // comandos para a central de controle do VS Code
         { "before": [ "<Leader>", "f", "f" ], "commands": [ "workbench.action.quickOpen" ] },
-        { "before": [ "<Leader>", "f", "s" ], "commands": [ "workbench.action.gotoSymbol" ] },
+        { "before": [ "<Leader>", "f", "w" ], "commands": [ "workbench.action.gotoSymbol" ] },
         { "before": [ "<Leader>", "f", "p" ], "commands": [ "workbench.action.showCommands" ] },
         // comandos para o workbench do VS Code
         { "before": [ "<Leader>", "o", "f" ], "commands": [ "workbench.action.files.openFile" ] },

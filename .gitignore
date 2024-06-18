@@ -4,5 +4,5 @@ __pycache__
 # diretório do ambiente virtual
 .venv
 
-# arquivo lixo gerado pelo macos
+# arquivo do macOS
 .DS_Store

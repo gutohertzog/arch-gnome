@@ -1,11 +1,15 @@
 # arch-gnome
 
 Respositório com minhas configurações do Gnome no Arch Linux.
+Criei ele para usar como distribuição Linux e usar enquanto realizo as configurações do Hyprland e torno ele funcional.
 
 
 | Gnome ||
 | :---- | :---- |
 | [gnome](https://www.gnome.org) | ambiente de desktop |
+
+Os pacotes abaixo são alguns de todos os pacotes quando se usa `pacman -S gnome`.
+Nem tudo do Gnome é interessante de ter instalado (como os aplicativos de documentos).
 
 | Pacotes do Gnome ||
 | :---- | :---- |
@@ -48,17 +52,21 @@ Respositório com minhas configurações do Gnome no Arch Linux.
 | [xdg-desktop-portal-gnome](https://archlinux.org/packages/extra/x86_64/xdg-desktop-portal-gnome) | implementação backend do desktop portal |
 | [xdg-user-dirs-gtk](https://archlinux.org/packages/extra/x86_64/xdg-user-dirs-gtk) | cria usuários e realoca eles |
 
+| Gerenciador de Pacotes ||
+| :---- | :---- |
+| [yay](https://github.com/Jguer/yay) | gerenciador de pacotes aur |
+
 | Pacotes do Sistema ||
 | :---- | :---- |
 | [networkmanager](https://archlinux.org/packages/extra/x86_64/networkmanager) | gerenciador de conexão com internet |
 | [nm-connection-editor](https://archlinux.org/packages/extra/x86_64/nm-connection-editor) | gerenciador de conexão com a internet|
+| [git](https://archlinux.org/packages/extra/x86_64/git) | sistema de controle de versionamento |
 | [p7zip](https://archlinux.org/packages/extra/x86_64/p7zip) | 7zip em linha de comando |
 | [fzf](https://archlinux.org/packages/extra/x86_64/fzf) | buscador difuso de linha de comando |
 | [ripgrep](https://archlinux.org/packages/extra/x86_64/ripgrep) | ferramenta de busca que combin ag com grep |
 | [nvidia](https://archlinux.org/packages/extra/x86_64/nvidia) | drivers da nvidia |
 | [nvidia-utils](https://archlinux.org/packages/extra/x86_64/nvidia-utils) | utilitários para o driver da nvidia |
 | [nvidia-settings](https://archlinux.org/packages/extra/x86_64/nvidia-settings) | ferramenta para configuração da nvidia |
-| [pavucontrol](https://archlinux.org/packages/extra/x86_64/pavucontrol) | controle de volume do pulseaudio |
 | [zsh](https://archlinux.org/packages/extra/x86_64/zsh) | shell avançado |
 | [zoxide](https://archlinux.org/packages/extra/x86_64/zoxide) | comando cd mais inteligente |
 | [neofetch](https://archlinux.org/packages/extra/any/neofetch) | mostra informações do hardware e software |
@@ -69,9 +77,10 @@ Respositório com minhas configurações do Gnome no Arch Linux.
 | [firefox](https://archlinux.org/packages/extra/x86_64/firefox) | navegador de internet |
 | [kitty](https://archlinux.org/packages/extra/x86_64/kitty) | emulador do terminal |
 | [vim](https://archlinux.org/packages/extra/x86_64/vim) | editor de texto cli |
+<!-- sudo pacman -S xclip # para funcionar o clipboard do sistema, ainda tem que ser testado -->
 | [code-oss](https://archlinux.org/packages/extra/x86_64/code) | editor de código gui |
 | [keepassxc](https://archlinux.org/packages/extra/x86_64/keepassxc) | gerenciador de senhas |
-| [git](https://archlinux.org/packages/extra/x86_64/git) | sistema de controle de versionamento |
+| [pavucontrol](https://archlinux.org/packages/extra/x86_64/pavucontrol) | controle de volume do pulseaudio |
 | [remmina](https://archlinux.org/packages/extra/x86_64/remmina) | conexão remota |
 
 | Design ||
@@ -104,6 +113,7 @@ Respositório com minhas configurações do Gnome no Arch Linux.
 | Para Teste ||
 | [logomenu](https://github.com/Aryan20/Logomenu) | acesso rápido ao menu no painel |
 | [top-bar-organizer](https://gitlab.gnome.org/julianschacher/top-bar-organizer) | organizador do painel gnome |
+| [dash-to-dock](https://github.com/micheleg/dash-to-dock) | move o dash para um dock |
 
 | Diversão ||
 | :---- | :---- |

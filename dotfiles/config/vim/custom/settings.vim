@@ -29,7 +29,8 @@ set t_ut=
 set noautowrite
 
 " use the clipboard as the unnamed register
-set clipboard=unnamed,unnamedplus
+set clipboard=unnamed
+set clipboard+=unnamedplus
 
 " enable the use of mouse clicks
 set mouse=a
@@ -71,6 +72,7 @@ set noignorecase
 
 " encoding used internally
 set encoding=utf-8
+
 " }}}
 
 " interface {{{

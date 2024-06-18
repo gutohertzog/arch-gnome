@@ -10,3 +10,7 @@ source ~/.config/vim/custom/snippets.vim
 source ~/.config/vim/plugins/init.vim
 "source ~/.config/vim/plugins/init.vim
 
+" usado para resolver o problema conforme o link
+" https://github.com/vim-airline/vim-airline/issues/393
+set t_RV=
+
