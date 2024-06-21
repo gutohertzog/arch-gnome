@@ -106,14 +106,11 @@ Nem tudo do Gnome é interessante de ter instalado (como os aplicativos de docum
 | :---- | :---- |
 | [caffeine](https://github.com/eonpatapon/gnome-shell-extension-caffeine) | desativa desligamento de tela e auto suspensão |
 | [clipboard-indicator](https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator) | gerenciador de clipboard |
-| [dash-to-panel](https://github.com/home-sweet-gnome/dash-to-panel) | move dash para o painel principal do gnome |
-| [space-bar](https://github.com/christopher-l/space-bar) | mostra as áreas de trabalho como botões no painel |
-| [forge](https://github.com/forge-ext/forge) | gerenciador de blocos e janelas para o gnome |
+| [dash-to-dock](https://github.com/micheleg/dash-to-dock) | move o dash para um dock |
 | [vitals](https://github.com/corecoding/Vitals) | monitorador de hardware |
 | Para Teste ||
 | [logomenu](https://github.com/Aryan20/Logomenu) | acesso rápido ao menu no painel |
 | [top-bar-organizer](https://gitlab.gnome.org/julianschacher/top-bar-organizer) | organizador do painel gnome |
-| [dash-to-dock](https://github.com/micheleg/dash-to-dock) | move o dash para um dock |
 
 | Diversão ||
 | :---- | :---- |

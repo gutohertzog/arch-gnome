@@ -232,9 +232,9 @@
     // "vim.statusBarColors.easymotioninputmode": "#007ACC",
     // "vim.statusBarColors.surroundinputmode": "#007ACC",
     "workbench.colorCustomizations": {
-        "statusBar.background": "#00000000",
-        "statusBar.noFolderBackground": "#00000000",
-        "statusBar.debuggingBackground": "#00000000",
+        "statusBar.background": "#00FF0033",
+        "statusBar.noFolderBackground": "#00FF0033",
+        "statusBar.debuggingBackground": "#00FF0033",
         "statusBar.foreground": "#FFFFFF",
         "statusBar.debuggingForeground": "#FFFFFF"
     },
@@ -252,4 +252,7 @@
     "zenMode.hideStatusBar": false,
     "glassit.alpha": 245,
     "editor.colorDecoratorsLimit": 1000,
+    "window.customTitleBarVisibility": "auto",
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
 }

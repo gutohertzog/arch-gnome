@@ -63,3 +63,11 @@ git clone https://github.com/bikass/kora
 # papel de parede
 git clone https://github.com/saint-13/Linux_Dynamic_Wallpapers
 
+# carrega as configurações para o gnome
+dconf load / < ~/arch-gnome/dotfiles/config/dconf/user-settings.conf
+
+# https://github.com/StevenBlack/hosts
+curl -o $HOME/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts
+sudo mv /etc/hosts /etc/hosts.bak
+sudo mv $HOME/hosts /etc/
+sudo systemctl restart NetworkManager.service

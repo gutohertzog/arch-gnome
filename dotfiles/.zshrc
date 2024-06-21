@@ -1,8 +1,11 @@
-# start neofetch, must be executed before p10k
-neofetch
-
 # start python virtual environment
 source $HOME/.venv/bin/activate
+
+# troca o wallpaper do kitty a cada execução
+kitty @ set-background-image $(ls /home/guto/Pictures/wallpapers/*.png | sort --random-sort | head -1)
+# roda neofetch
+neofetch
+
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -120,6 +123,7 @@ alias pst="ls -lah | grep ^drw"
 alias arq="ls -lah | grep ^-rw"
 alias pfless="fzf --preview='less {}' --bind up:preview-page-up,down:preview-page-down"
 alias pfbat="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+# alias kitty="kitty --override background_image=\$(ls /home/guto/Pictures/wallpapers/*.png | sort --random-sort | head -1)"
 # alias cdf="cd './$(find -type d | fzf)'"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -155,3 +159,5 @@ export FZF_DEFAULT_OPTS='
   #--color=dark
   #--color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
   #--color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
+
+

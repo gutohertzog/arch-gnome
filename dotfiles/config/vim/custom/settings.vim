@@ -199,7 +199,7 @@ set foldclose=
 set foldcolumn=2
 
 " set to display all folds open
-set foldenable
+set nofoldenable
 
 " expression used when 'foldmethod' is "expr"
 set foldexpr=0
