@@ -8,7 +8,7 @@ function! ToggleChars()
   if g:flag
     " desativa showbreak e listchar
     echom "showbreak e listchar desativados"
-    set showbreak=
+    set showbreak=↪\
     set nolist
     let g:flag = 0
   else
@@ -44,5 +44,20 @@ endfunction
 
 " nnoremap <F9> :set wrap!<CR>
 nnoremap <F9> :call ToggleWrap()<CR>
+" }}}
+
+" Toggle_transparent_background {{{
+" ativa transparência do vim
+let t:is_transparent = 0                     
+function! Toggle_transparent_background()                      
+  if t:is_transparent == 0                   
+    hi Normal guibg=#111111 ctermbg=black                     
+    let t:is_transparent = 1
+  else
+    hi Normal guibg=NONE ctermbg=NONE                    
+    let t:is_transparent = 0                        
+  endif                    
+endfunction               
+nnoremap <C-x><C-t> :call Toggle_transparent_background()<CR>
 " }}}
 
