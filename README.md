@@ -76,12 +76,11 @@ Nem tudo do Gnome é interessante de ter instalado (como os aplicativos de docum
 | :---- | :---- |
 | [firefox](https://archlinux.org/packages/extra/x86_64/firefox) | navegador de internet |
 | [kitty](https://archlinux.org/packages/extra/x86_64/kitty) | emulador do terminal |
-| [vim](https://archlinux.org/packages/extra/x86_64/vim) | editor de texto cli |
+| [gvim](https://archlinux.org/packages/extra/x86_64/gvim) | editor de texto cli (gvim vem com suporte a clipboard) |
 | [code-oss](https://archlinux.org/packages/extra/x86_64/code) | editor de código gui |
 | [keepassxc](https://archlinux.org/packages/extra/x86_64/keepassxc) | gerenciador de senhas |
 | [pavucontrol](https://archlinux.org/packages/extra/x86_64/pavucontrol) | controle de volume do pulseaudio |
 | [remmina](https://archlinux.org/packages/extra/x86_64/remmina) | conexão remota |
-<!-- sudo pacman -S xclip # para funcionar o clipboard do sistema, ainda tem que ser testado -->
 
 | Design ||
 | :---- | :---- |

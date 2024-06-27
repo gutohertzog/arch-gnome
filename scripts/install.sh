@@ -22,7 +22,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugi
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
 # instala os programas que serão usados
-sudo pacman -S firefox kitty vim code-oss keepassxc remmina pavucontrol
+sudo pacman -S firefox kitty gvim code-oss keepassxc remmina pavucontrol
 
 # instala extensões do code-oss
 code-oss --install-extension vscodevim.vim

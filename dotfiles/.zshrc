@@ -1,11 +1,8 @@
 # start python virtual environment
 source $HOME/.venv/bin/activate
 
-# troca o wallpaper do kitty a cada execução
-kitty @ set-background-image $(ls /home/guto/Pictures/wallpapers/*.png | sort --random-sort | head -1)
 # roda neofetch
 neofetch
-
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -104,6 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -117,13 +115,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias canos="$HOME/GitHub/pipes.sh/pipes.sh"
-alias src="source .zshrc" # recarrega o .zshrc
+alias src="source ~/.zshrc" # recarrega o .zshrc
 alias cpd="sudo openvpn --config ~/Documents/vpn-cpd-v1.1.ovpn"
 alias pst="ls -lah | grep ^drw"
 alias arq="ls -lah | grep ^-rw"
 alias pfless="fzf --preview='less {}' --bind up:preview-page-up,down:preview-page-down"
 alias pfbat="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
-# alias kitty="kitty --override background_image=\$(ls /home/guto/Pictures/wallpapers/*.png | sort --random-sort | head -1)"
+alias update="sudo pacman -Suvy"
+alias vim="vim -S ~/.config/vim/vimrc"
 # alias cdf="cd './$(find -type d | fzf)'"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -150,8 +149,8 @@ setopt hist_find_no_dups
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
 
+#--reverse
 export FZF_DEFAULT_OPTS='
-  --reverse
   --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
   --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
   --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
