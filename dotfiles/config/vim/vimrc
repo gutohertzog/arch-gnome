@@ -53,6 +53,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-surround'
 Plug 'voldikss/vim-floaterm'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 call plug#end()
 " }}}
@@ -122,7 +123,7 @@ noremap <Leader>fc :FzfHistory:<CR>
 " }}}
 
 " markdown {{{
-let g:markdown_folding = 1
+"let g:markdown_folding = 1
 " }}}
 
 " floaterm {{{
@@ -299,6 +300,7 @@ set shiftround
 set tabstop=2
 set softtabstop=2
 set expandtab
+set autoindent
 " }}}
 
 " busca {{{
@@ -333,7 +335,7 @@ set foldtext=foldtext()
 
 
 " }}}
-" ATALHOS  ----------------------------------------------------------- {{{
+" ATALHOS  ---------------------------------------------------------------- {{{
 nnoremap <leader>vim :e $MYVIMRC<cr>
 
 " desativa {{{
@@ -385,6 +387,12 @@ nnoremap <tab> :bnext<CR>
 nnoremap <s-tab> :bprevious<CR>
 "nnoremap <tab> :blast<CR>
 
+" terminal
+tnoremap <C-H> <C-\><C-n><C-W><C-H>
+tnoremap <C-J> <C-\><C-n><C-W><C-J>
+tnoremap <C-K> <C-\><C-n><C-W><C-K>
+tnoremap <C-L> <C-\><C-n><C-W><C-L>
+
 " arquivos
 noremap H ^
 noremap L $
@@ -407,7 +415,7 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " caixa alta
-inoremap <c-k> <esc>viwUea
+inoremap <c-k> <Esc>viwUea
 
 " indentação
 vnoremap < <gv
@@ -415,14 +423,14 @@ vnoremap > >gv
 " }}}
 
 " buscas {{{
-nnoremap <esc> :nohl<cr>
+nnoremap <Esc> :nohl<cr>
 
 " busca texto selecionado
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " }}}
 
 " completamentos {{{
-" busca palavra (bugado)
+" busca palavra (arrumar)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
 " completa caminho
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
@@ -440,8 +448,9 @@ vnoremap <leader><C-r> "hy:%s/<C-r>h/<C-r>h/g<left><left>
 " }}}
 
 " }}}
-" ÚLTIMO {{{
+" ÚLTIMO ------------------------------------------------------------------ {{{
 " configuração que precisam vir por último
+
 " https://github.com/vim-airline/vim-airline/issues/393
 set t_RV=
 " remove [] entre os ícones na nerdtree
