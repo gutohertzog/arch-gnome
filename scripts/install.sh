@@ -58,8 +58,10 @@ git clone https://github.com/vinceliuice/WhiteSur-gtk-theme
 git clone https://github.com/vinceliuice/Orchis-theme
 git clone https://github.com/EliverLara/Nordic
 # ícones do sistema
-git clone https://github.com/PapirusDevelopmentTeam/papirus-icon-theme
+wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
 git clone https://github.com/bikass/kora
+cd kora
+mv kora* $HOME/.local/share/icons
 # papel de parede
 git clone https://github.com/saint-13/Linux_Dynamic_Wallpapers
 

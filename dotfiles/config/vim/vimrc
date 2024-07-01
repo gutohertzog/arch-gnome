@@ -17,6 +17,7 @@
 "    -> Plug
 "    -> Plugins
 "    -> Funções
+"    -> Automações
 "    -> Configurações
 "    -> Atalhos
 "    -> Último
@@ -36,8 +37,10 @@ filetype indent on
 
 let mapleader=" "
 let maplocalleader=" "
+
 " }}}
 " PLUG -------------------------------------------------------------------- {{{
+
 call plug#begin('~/.local/share/vim/plugged')
 
 Plug 'preservim/nerdtree'
@@ -45,17 +48,20 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'machakann/vim-highlightedyank'
-"Plug 'TaDaa/vimade'
-"Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" A git wrapper.
-"Plug 'tpope/vim-fugitive'
-"Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'voldikss/vim-floaterm'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+" para testar
+"Plug 'ycm-core/YouCompleteMe'
+"Plug 'TaDaa/vimade'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'tpope/vim-surround'
 
 call plug#end()
+
 " }}}
 " PLUGINS ----------------------------------------------------------------- {{{
 
@@ -87,8 +93,10 @@ let g:NERDTreeFileLines = 1
 "autocmd VimEnter * NERDTree
 let NERDTreeShowHidden = 1
 
-noremap <leader>e :NERDTreeToggle<CR>
-noremap <leader>E :NERDTreeFocus<CR>
+noremap <Leader>e :NERDTreeToggle<CR>
+noremap <Leader>E :NERDTreeFocus<CR>
+noremap <Leader>ntf :NERDTreeFind<CR>
+noremap <Leader>ntr :NERDTreeRefreshRoot<CR>
 " }}}
 
 " fzf {{{
@@ -107,18 +115,22 @@ let g:fzf_vim.preview_window = ['right,50%,<60(up,40%)', 'ctrl-l']
 " arquivos
 noremap <Leader>ff :FzfFiles<CR>
 noremap <Leader>fF :FzfFiles!<CR>
-noremap <Leader>fw :FzfRg<space>
-noremap <Leader>fW :FzfRg!<space>
+noremap <Leader>fw :FzfRg<Space>
+noremap <Leader>fW :FzfRg!<Space>
 noremap <Leader>fb :FzfBuffers<CR>
 noremap <Leader>fB :FzfBuffers!<CR>
 " atalhos
 noremap <Leader>fk :FzfMaps<CR>
+noremap <Leader>fK :FzfMaps!<CR>
 " histórico arquivos
 noremap <Leader>fh :FzfHistory<CR>
+noremap <Leader>fH :FzfHistory!<CR>
 " histórico busca
 noremap <Leader>fs :FzfHistory/<CR>
+noremap <Leader>fS :FzfHistory/!<CR>
 " comandos
 noremap <Leader>fc :FzfHistory:<CR>
+noremap <Leader>fC :FzfHistory:!<CR>
 " }}}
 " }}}
 
@@ -135,56 +147,28 @@ tnoremap <F8> <C-\><C-n>:FloatermKill<CR>
 
 let g:floaterm_width = 0.6
 let g:floaterm_height = 0.8
-"let g:floaterm_borderchars = '═║═║╔╗╝╚'
+" }}}
+
+" vim-gitgutter {{{
+nnoremap <Leader>gt :GitGutterToggle<CR>
+nnoremap <Leader>gf :GitGutterFold<CR>
+nnoremap <Leader>gh :GitGutterLineHighlightsToggle<CR>
+nnoremap <Leader>gd :GitGutterDiffOrig<CR>
+nnoremap <Leader>gj :GitGutterNextHunk<CR>zz
+nnoremap <Leader>gk :GitGutterPrevHunk<CR>zz
+map <Space>hu <Nop>
+map <Space>hs <Nop>
+map <Space>hp <Nop>
+map ]c <Nop>
+map [c <Nop>
 " }}}
 
 " }}}
 " FUNÇÕES ----------------------------------------------------------------- {{{
-" ToggleChars {{{
-" função para ativar e desativar os caracteres de marcação
-let g:t_flag = 0
-
-function! ToggleChars()
-  if g:t_flag
-    echom "listchar desativado"
-    set nolist
-    let g:t_flag = 0
-  else
-    echom "listchar ativado"
-    set list
-    set listchars=tab:<->,eol:↲,nbsp:║,space:␣,trail:•,extends:⟩,precedes:⟨
-    let g:t_flag = 1
-  endif
-endfunction
-
-nnoremap <F12> :call ToggleChars()<CR>
-" }}}
-
-" ToggleWrap {{{
-" função para ativar e desativar o wrap
-let g:w_flag = 1
-
-function! ToggleWrap()
-  if g:w_flag
-    echom "wrap desativado"
-    set nowrap
-    let g:w_flag = 0
-  else
-    echom "wrap ativado"
-    set wrap
-    let g:w_flag = 1
-  endif
-endfunction
-
-nnoremap <F9> :call ToggleWrap()<CR>
-" }}}
 
 " ToggleTransparency {{{
 " função para ativar e desativar a transparência
 let g:b_flag = 1
-
-"if g:codedark_modern | let s:cdBack = {'gui': '#1f1f1f', 'cterm': 'NONE', 'cterm256': '234'} | endif
-"if g:codedark_transparent | let s:cdBack = {'gui': 'NONE', 'cterm': 'NONE', 'cterm256': 'NONE'} | endif
 
 function! ToggleTransparency()
   if g:b_flag
@@ -198,8 +182,22 @@ function! ToggleTransparency()
   endif
 endfunction
 
-nnoremap <F11> :call ToggleTransparency()<CR>
+nnoremap <F12> :call ToggleTransparency()<CR>
 " }}}
+
+" }}}
+" AUTOMAÇÕES -------------------------------------------------------------- {{{
+
+" Ativar relativenumber no modo normal
+augroup RelNumToggle
+  autocmd!
+  " Desativar relativenumber ao entrar no modo de inserção
+  autocmd InsertEnter * set norelativenumber
+  " Ativar relativenumber ao sair do modo de inserção
+  autocmd InsertLeave * set relativenumber
+augroup END
+" é necessário já que <C-c> não dispara os eventos Insert Enter/Leave
+inoremap <C-c> <Esc>:set relativenumber<CR>
 
 " }}}
 " CONFIGURAÇÕES ----------------------------------------------------------- {{{
@@ -260,15 +258,15 @@ set wildmode=list:longest
 
 set history=1000
 
-set noignorecase
-
 set encoding=utf-8
+set fileformat=unix
 
 " interface {{{
 set number
 set relativenumber
 
 set laststatus=2
+set signcolumn=yes
 
 set cursorline
 hi clear CursorLine
@@ -290,6 +288,7 @@ set showcmd
 set showmode
 
 set showbreak=↪\
+set listchars=tab:<->,eol:↲,nbsp:║,space:␣,trail:•,extends:⟩,precedes:⟨
 set nolist
 " }}}
 
@@ -319,7 +318,7 @@ set nowritebackup
 
 " fold {{{
 set foldclose=
-set foldcolumn=2
+set foldcolumn=1
 set nofoldenable
 set foldexpr=0
 set foldignore=#
@@ -333,25 +332,25 @@ set foldopen=block,hor,mark,percent,quickfix,search,tag,undo
 set foldtext=foldtext()
 " }}}
 
-
 " }}}
 " ATALHOS  ---------------------------------------------------------------- {{{
-nnoremap <leader>vim :e $MYVIMRC<cr>
+
+nnoremap <Leader>vim :e $MYVIMRC<CR>
 
 " desativa {{{
-nnoremap <space> <nop>
-vnoremap <space> <nop>
-no <up> <nop>
-no <down> <nop>
-no <left> <nop>
-no <right> <nop>
+nnoremap <Space> <Nop>
+vnoremap <Space> <Nop>
+no <Up> <Nop>
+no <Down> <Nop>
+no <Left> <Nop>
+no <Right> <Nop>
 " }}}
 
 " Y como C ou D
 map Y y$
 
 " salvamentos {{{
-nnoremap <leader>so :source $MYVIMRC<cr>
+nnoremap <Leader>so :source $MYVIMRC<CR>
 
 inoremap <C-s> <Esc>:w<CR>a
 xnoremap <C-s> <Esc>:w<CR>
@@ -369,29 +368,26 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
-nnoremap <leader>ww <C-W>c
-nnoremap <leader>ws :new<CR>
-nnoremap <leader>wS :split<CR>
-nnoremap <leader>wv :vnew<CR>
-nnoremap <leader>wV :vsplit<CR>
+nnoremap <Leader>ww <C-W>c
+nnoremap <Leader>ws :new<CR>
+nnoremap <Leader>wS :split<CR>
+nnoremap <Leader>wv :vnew<CR>
+nnoremap <Leader>wV :vsplit<CR>
 
 " tabs
-nnoremap <leader>tt :tabnew<CR>
-nnoremap <leader>tw :tabclose<CR>
-nnoremap <leader>tn :tabnext<CR>
-nnoremap <leader>tp :tabprevious<CR>
+nnoremap <Leader>tt :tabnew<CR>
+nnoremap <Leader>tw :tabclose<CR>
+nnoremap <Leader>tn :tabnext<CR>
+nnoremap <Leader>tp :tabprevious<CR>
 
 " buffers
-nnoremap <leader>bw :bdelete<CR>
+nnoremap <Leader>bw :bdelete<CR>
 nnoremap <tab> :bnext<CR>
 nnoremap <s-tab> :bprevious<CR>
 "nnoremap <tab> :blast<CR>
 
 " terminal
-tnoremap <C-H> <C-\><C-n><C-W><C-H>
-tnoremap <C-J> <C-\><C-n><C-W><C-J>
-tnoremap <C-K> <C-\><C-n><C-W><C-K>
-tnoremap <C-L> <C-\><C-n><C-W><C-L>
+tnoremap <Leader><Esc> <C-\><C-n>
 
 " arquivos
 noremap H ^
@@ -399,10 +395,16 @@ noremap L $
 " }}}
 
 " tamanho janela {{{
-nnoremap <C-Up> :resize +2<cr>
+nnoremap <C-Up> :resize +2<CR>
 nnoremap <C-Down> :resize -2<CR>
 nnoremap <C-Left> :vertical resize -2<CR>
 nnoremap <C-Right> :vertical resize +2<CR>
+" }}}
+
+" toggles {{{
+nnoremap <Leader><Leader>w :set wrap!<CR>
+nnoremap <Leader><Leader>rn :set relativenumber!<CR>
+nnoremap <Leader><Leader>l :set list!<CR>
 " }}}
 
 " edição arquivo {{{
@@ -423,7 +425,7 @@ vnoremap > >gv
 " }}}
 
 " buscas {{{
-nnoremap <Esc> :nohl<cr>
+nnoremap <Esc> :nohl<CR>
 
 " busca texto selecionado
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -431,9 +433,9 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " completamentos {{{
 " busca palavra (arrumar)
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
+inoremap <expr> <C-x><C-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
 " completa caminho
-inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+inoremap <expr> <C-x><C-f> fzf#vim#complete#path('rg --files')
 " }}}
 
 " ordenação {{{
@@ -444,7 +446,7 @@ vnoremap <C-s> :sort<CR>
 " substituição {{{
 " substitui todas ocorrências
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
-vnoremap <leader><C-r> "hy:%s/<C-r>h/<C-r>h/g<left><left>
+vnoremap <Leader><C-r> "hy:%s/<C-r>h/<C-r>h/g<left><left>
 " }}}
 
 " }}}
@@ -458,3 +460,4 @@ if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
 " }}}
+

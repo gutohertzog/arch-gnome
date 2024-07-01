@@ -25,6 +25,7 @@ dconf dump / | sed -n '/\[org.gnome.shell.extensions.blur-my-shell/,/^$/p' >> $H
 dconf dump / | sed -n '/\[org.gnome.shell.extensions.caffeine/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 dconf dump / | sed -n '/\[org.gnome.shell.extensions.clipboard-indicator/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 dconf dump / | sed -n '/\[org.gnome.shell.extensions.dash-to-dock/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
+dconf dump / | sed -n '/\[org.gnome.shell.extensions.space-iflow-randomwallpaper/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 dconf dump / | sed -n '/\[org.gnome.shell.keybindings/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 
 cp -rv $HOME/Pictures/wallpapers/* $HOME/arch-gnome/dotfiles/Images/
