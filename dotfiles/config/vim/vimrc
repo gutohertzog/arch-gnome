@@ -134,10 +134,6 @@ noremap <Leader>fC :FzfHistory:!<CR>
 " }}}
 " }}}
 
-" markdown {{{
-"let g:markdown_folding = 1
-" }}}
-
 " floaterm {{{
 " https://github.com/voldikss/vim-floaterm
 nnoremap <C-;> :FloatermToggle<CR>
@@ -317,19 +313,9 @@ set nowritebackup
 " }}}
 
 " fold {{{
-set foldclose=
 set foldcolumn=1
-set nofoldenable
-set foldexpr=0
-set foldignore=#
-set foldlevel=0
-set foldlevelstart=1
-set foldmarker={{{,}}}
+set foldlevelstart=0
 set foldmethod=manual
-set foldminlines=1
-set foldnestmax=20
-set foldopen=block,hor,mark,percent,quickfix,search,tag,undo
-set foldtext=foldtext()
 " }}}
 
 " }}}
@@ -425,7 +411,7 @@ vnoremap > >gv
 " }}}
 
 " buscas {{{
-nnoremap <Esc> :nohl<CR>
+nnoremap \\ :nohlsearch<CR>
 
 " busca texto selecionado
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -435,7 +421,7 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " busca palavra (arrumar)
 inoremap <expr> <C-x><C-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
 " completa caminho
-inoremap <expr> <C-x><C-f> fzf#vim#complete#path('rg --files')
+inoremap <expr> <C-x><C-f> fzf#vim#complete#path('rg --files --hidden')
 " }}}
 
 " ordenação {{{

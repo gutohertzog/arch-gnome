@@ -7,6 +7,7 @@ printf "Realizando backup das pastas\n"
 printf "Copiando arquivos\n"
 cp -v $HOME/.zshrc $HOME/arch-gnome/dotfiles/
 cp -v $HOME/.XCompose $HOME/arch-gnome/dotfiles/
+cp -v $HOME/.profile $HOME/arch-gnome/dotfiles/
 
 # exporta as configurações do Gnome
 dconf dump / | sed -n '/\[org.gnome.desktop.background/,/^$/p' > $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
@@ -31,6 +32,8 @@ dconf dump / | sed -n '/\[org.gnome.shell.keybindings/,/^$/p' >> $HOME/arch-gnom
 cp -rv $HOME/Pictures/wallpapers/* $HOME/arch-gnome/dotfiles/Images/
 
 cp -rv $HOME/.config/Code\ -\ OSS/User/*.json $HOME/arch-gnome/dotfiles/config/Code\ -\ OSS/User/
+cp -rv $HOME/.config/meus_scripts $HOME/arch-gnome/dotfiles/config
 cp -rv $HOME/.config/kitty $HOME/arch-gnome/dotfiles/config
 cp -rv $HOME/.config/neofetch $HOME/arch-gnome/dotfiles/config
 cp -rv $HOME/.config/vim $HOME/arch-gnome/dotfiles/config
+

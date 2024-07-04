@@ -71,6 +71,7 @@ Nem tudo do Gnome é interessante de ter instalado (como os aplicativos de docum
 | [zoxide](https://archlinux.org/packages/extra/x86_64/zoxide) | comando cd mais inteligente |
 | [neofetch](https://archlinux.org/packages/extra/any/neofetch) | mostra informações do hardware e software |
 | [curl](https://archlinux.org/packages/core/x86_64/curl) | ferramenta de linha de comando para transferir dados com urls |
+| [unclutter](https://archlinux.org/packages/extra/x86_64/unclutter) | esconde o mouse |
 
 | Aplicativos ||
 | :---- | :---- |
