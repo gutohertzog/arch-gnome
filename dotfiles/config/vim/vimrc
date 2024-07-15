@@ -54,6 +54,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'voldikss/vim-floaterm'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'dense-analysis/ale'
+"Plug 'maxboisvert/vim-simple-complete'
 " para testar
 "Plug 'ycm-core/YouCompleteMe'
 "Plug 'TaDaa/vimade'
@@ -64,6 +66,34 @@ call plug#end()
 
 " }}}
 " PLUGINS ----------------------------------------------------------------- {{{
+
+" ale - Asynchronous Lint Engine {{{
+let g:ale_lsp_suggestions = 1
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = '[%linter%] %code: %s'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_set_highlights = 0
+
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_linters = {'python': 'all'}
+"'remove_trailing_lines',
+let g:ale_fixers = {
+\   '*': ['trim_whitespace'],
+\}
+"
+set omnifunc=ale#completion#OmniFunc
+" }}}
 
 " airline {{{
 " https://github.com/vim-airline/vim-airline
@@ -131,6 +161,11 @@ noremap <Leader>fS :FzfHistory/!<CR>
 " comandos
 noremap <Leader>fc :FzfHistory:<CR>
 noremap <Leader>fC :FzfHistory:!<CR>
+" completamentos
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
 " }}}
 " }}}
 
@@ -157,6 +192,11 @@ map <Space>hs <Nop>
 map <Space>hp <Nop>
 map ]c <Nop>
 map [c <Nop>
+" }}}
+
+" vim-simple-complete {{{
+"set complete-=t
+"set complete-=i
 " }}}
 
 " }}}
@@ -288,6 +328,8 @@ set listchars=tab:<->,eol:↲,nbsp:║,space:␣,trail:•,extends:⟩,precedes:
 set nolist
 " }}}
 
+set undolevels=1000
+
 " tabs {{{
 set shiftwidth=2
 set smarttab
@@ -313,6 +355,7 @@ set nowritebackup
 " }}}
 
 " fold {{{
+set nofoldenable
 set foldcolumn=1
 set foldlevelstart=0
 set foldmethod=manual
@@ -333,7 +376,7 @@ no <Right> <Nop>
 " }}}
 
 " Y como C ou D
-map Y y$
+nnoremap Y y$
 
 " salvamentos {{{
 nnoremap <Leader>so :source $MYVIMRC<CR>
@@ -417,13 +460,6 @@ nnoremap \\ :nohlsearch<CR>
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " }}}
 
-" completamentos {{{
-" busca palavra (arrumar)
-inoremap <expr> <C-x><C-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
-" completa caminho
-inoremap <expr> <C-x><C-f> fzf#vim#complete#path('rg --files --hidden')
-" }}}
-
 " ordenação {{{
 " ordena linhas selecionadas
 vnoremap <C-s> :sort<CR>
@@ -431,8 +467,8 @@ vnoremap <C-s> :sort<CR>
 
 " substituição {{{
 " substitui todas ocorrências
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
-vnoremap <Leader><C-r> "hy:%s/<C-r>h/<C-r>h/g<left><left>
+vnoremap <C-r> "hy:%s/<C-r>h//g<Left><Left>
+vnoremap <Leader><C-r> "hy:%s/<C-r>h/<C-r>h/g<Left><Left>
 " }}}
 
 " }}}
@@ -446,4 +482,3 @@ if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
 " }}}
-

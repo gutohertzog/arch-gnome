@@ -37,3 +37,7 @@ cp -rv $HOME/.config/kitty $HOME/arch-gnome/dotfiles/config
 cp -rv $HOME/.config/neofetch $HOME/arch-gnome/dotfiles/config
 cp -rv $HOME/.config/vim $HOME/arch-gnome/dotfiles/config
 
+# remove arquivos e pastas desnecessárias
+rm -v $HOME/arch-gnome/dotfiles/config/vim/autoload/plug.vim.old
+rm -rfv $HOME/arch-gnome/dotfiles/config/vim/view
+

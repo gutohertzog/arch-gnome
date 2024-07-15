@@ -24,6 +24,10 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 # instala os programas que serão usados
 sudo pacman -S firefox kitty gvim code-oss keepassxc remmina pavucontrol
 
+# instala dicionário
+# https://archlinux.org/packages/extra/any/words/
+sudo pacman -S words
+
 # instala extensões do code-oss
 code-oss --install-extension vscodevim.vim
 code-oss --install-extension vscode-icons-team.vscode-icons
@@ -73,3 +77,14 @@ curl -o $HOME/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/a
 sudo mv /etc/hosts /etc/hosts.bak
 sudo mv $HOME/hosts /etc/
 sudo systemctl restart NetworkManager.service
+
+# cria o ambiente virtual para o Python
+python -m venv ~/.venv
+pip install sqlfluff
+pip install pylint
+
+# instalações para ale
+sudo pacman -S bash-language-server
+
+# testar o timeshift junto com o btrfs
+
