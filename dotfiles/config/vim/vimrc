@@ -481,4 +481,6 @@ set t_RV=
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
+
+let g:loaded_vim_simple_complete = 0
 " }}}
