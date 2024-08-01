@@ -1,28 +1,46 @@
 #!/bin/bash
 
-# apenas um script simples para instalar os cacarecos do sistema
-# ainda será melhorado
-
 # primeiro é preciso instalar o pacote básico do Arch Linux, sem qualquer
 # interface, depois basta seguir a ordem do script
 
-# instala os pacotes do Gnome
+# instala os pacotes específicos do Gnome
 sudo pacman -S baobab gdm gnome-backgrounds gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-color-manager gnome-contacts gnome-control-center gnome-disk-utility gnome-font-viewer gnome-keyring gnome-logs gnome-menus gnome-remote-desktop gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-system-monitor gnome-tweaks gnome-user-share gnome-weather gvfs gvfs-afc gvfs-dnssd gvfs-google gvfs-onedrive gvfs-smb gvfs-wsdd loupe nautilus sushi tecla tracker3-miners xdg-desktop-portal-gnome xdg-user-dirs-gtk
 
 # instala pacotes da nvidia
 sudo pacman -S nvidia nvidia-utils nvidia-settings
 
+# instala o Kitty como terminal emulator
+sudo pacman -S kitty
+
+# instala as fontes
+sudo pacman -S ttf-cascadia-code-nerd ttf-cascadia-mono-nerd
+
+# instala o gerenciador de pacotes aur
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
+rm -rf yay
+
 # instala pacotes suplementares
-sudo pacman -S git p7zip fzf ripgrep zsh zoxide neofetch curl nm-connection-editor
+sudo pacman -S git p7zip fzf ripgrep zsh zoxide neofetch curl nm-connection-editor wget
+
+# instala extensões do Gnome
+yay -S gnome-shell-extension-dash-to-dock
+yay -S gnome-shell-extension-caffeine
+yay -S gnome-shell-extension-clipboard-indicator
+yay -S gnome-shell-extension-blur-my-shell
 
 # instala extensões do zsh
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-completions.git $ZSH_CUSTOM/plugins/zsh-completions
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+git clone https://github.com/zsh-users/zsh-completions.git $HOME/.oh-my-zsh/custom/plugins/zsh-completions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/Aloxaf/fzf-tab $HOME/.oh-my-zsh/custom/plugins/fzf-tab
 
-# instala os programas que serão usados
-sudo pacman -S firefox kitty gvim code-oss keepassxc remmina pavucontrol
+# instala os programas
+sudo pacman -S firefox gvim code keepassxc remmina pavucontrol
 
 # instala dicionário
 # https://archlinux.org/packages/extra/any/words/
@@ -35,21 +53,17 @@ code-oss --install-extension oderwat.indent-rainbow
 code-oss --install-extension tomoki1207.vscode-pdf
 code-oss --install-extension s-nlf-fh.glassit
 
-# instala as fontes
-sudo pacman -S ttf-cascadia-code-nerd ttf-cascadia-mono-nerd
-
-# instala o gerenciador de pacotes aur
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-cd
-
-# cursor oreo instala trocentos pacotes do GO, então ele é copiado e
-# descompactado direto do meu repositório
-rm -rf $HOME/.icons > /dev/null 2>&1
+# instalar o oreo-cursor diretamente do yay necessita de MUITAS dependências,
+# então ele é copiado e descompactado diretamente do meu repositório
+# yay -S oreo-cursors-git
+rm -rf $HOME/.icons
 mkdir $HOME/.icons/
-cp -r $HOME/arch-gnome/dotfiles/.icons/defaults $HOME/.icons/ > /dev/null 2>&1
+cp -r $HOME/arch-gnome/dotfiles/.icons/defaults $HOME/.icons/
 for f in $HOME/arch-gnome/dotfiles/.icons/*.tar.gz; do tar xfv "$f" -C $HOME/.icons/; done
+
+# copia o meu tema personalizado
+mkdir $HOME/.themes
+cp -r $HOME/arch-gnome/dotfiles/themes/* $HOME/.themes
 
 # clones para instalar os temas do sistema
 mkdir -p $HOME/GitHub
@@ -66,11 +80,9 @@ wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons"
 git clone https://github.com/bikass/kora
 cd kora
 mv kora* $HOME/.local/share/icons
-# papel de parede
-git clone https://github.com/saint-13/Linux_Dynamic_Wallpapers
 
 # carrega as configurações para o gnome
-dconf load / < ~/arch-gnome/dotfiles/config/dconf/user-settings.conf
+dconf load / < $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 
 # https://github.com/StevenBlack/hosts
 curl -o $HOME/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts
@@ -80,11 +92,31 @@ sudo systemctl restart NetworkManager.service
 
 # cria o ambiente virtual para o Python
 python -m venv ~/.venv
-pip install sqlfluff
 pip install pylint
 
 # instalações para ale
 sudo pacman -S bash-language-server
 
 # testar o timeshift junto com o btrfs
+
+# tema para o Firefox
+cd $HOME/GitHub
+git clone https://github.com/datguypiko/Firefox-Mod-Blur
+cd Firefox-Mod-Blur
+mkdir -p $HOME/.mozilla/firefox/firefox-themes
+cp -r ASSETS $HOME/.mozilla/firefox/firefox-themes
+cp userContent.css $HOME/.mozilla/firefox/firefox-themes
+cp userChrome.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Compact\ extensions\ menu/Style\ 2/cleaner_extensions_menu.css $HOME/mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Tabs\ Bar\ Mods/Colored\ sound\ playing\ tab/colored_soundplaying_tab.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Icon\ and\ Button\ Mods/Firefox\ view\ icon\ change/firefox_view_icon_change.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Icon\ and\ Button\ Mods/Hide\ list-all-tabs\ button/hide_list-all-tabs_button.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Icon\ and\ Button\ Mods/Icons\ in\ main\ menu/icons_in_main_menu.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Icon\ and\ Button\ Mods/Menu\ icon\ change/menu_icon_change_to_firefox.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Min-max-close\ control\ buttons/Right\ side\ MacOS\ style\ buttons/min-max-close_buttons.css $HOME/.mozilla/firefox/firefox-themes/
+cp EXTRA\ MODS/Bookmarks\ Bar\ Mods/Remove\ folder\ icons\ from\ bookmars/remove_folder_icons_from_bookmarks.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Homepage\ mods/Remove\ text\ from\ homepage\ shortcuts/remove_homepage_shortcut_title_text.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Tabs\ Bar\ Mods/Tabs\ -\ reversed\ background\ color/reversed_tabs_bg_color.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Tabs\ Bar\ Mods/Tabs\ -\ selected\ tabs\ static\ width/selected_tabs_static_width.css $HOME/.mozilla/firefox/firefox-themes
+cp EXTRA\ MODS/Icon\ and\ Button\ Mods/uBlock\ icon\ change/ublock-icon-change.css $HOME/.mozilla/firefox/firefox-themes
 
