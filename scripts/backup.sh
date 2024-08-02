@@ -26,12 +26,19 @@ dconf dump / | sed -n '/\[org.gnome.shell.extensions.blur-my-shell/,/^$/p' >> $H
 dconf dump / | sed -n '/\[org.gnome.shell.extensions.caffeine/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 dconf dump / | sed -n '/\[org.gnome.shell.extensions.clipboard-indicator/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 dconf dump / | sed -n '/\[org.gnome.shell.extensions.dash-to-dock/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
-dconf dump / | sed -n '/\[org.gnome.shell.extensions.space-iflow-randomwallpaper/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 dconf dump / | sed -n '/\[org.gnome.shell.keybindings/,/^$/p' >> $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 
-cp -rv $HOME/Pictures/wallpapers/* $HOME/arch-gnome/dotfiles/Images/
+rm -rf $HOME/arch-gnome/dotfiles/Pictures/wallpapers
+cp -rv $HOME/Pictures/wallpapers $HOME/arch-gnome/dotfiles/Pictures
 
 cp -rv $HOME/.config/Code\ -\ OSS/User/*.json $HOME/arch-gnome/dotfiles/config/Code\ -\ OSS/User/
+
+# remove arquivos para receber os atualizados
+rm -rfv $HOME/arch-gnome/dotfiles/config/meus_scripts
+rm -rfv $HOME/arch-gnome/dotfiles/config/kitty
+rm -rfv $HOME/arch-gnome/dotfiles/config/neofetch
+rm -rfv $HOME/arch-gnome/dotfiles/config/vim
+
 cp -rv $HOME/.config/meus_scripts $HOME/arch-gnome/dotfiles/config
 cp -rv $HOME/.config/kitty $HOME/arch-gnome/dotfiles/config
 cp -rv $HOME/.config/neofetch $HOME/arch-gnome/dotfiles/config

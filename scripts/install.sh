@@ -3,50 +3,53 @@
 # primeiro é preciso instalar o pacote básico do Arch Linux, sem qualquer
 # interface, depois basta seguir a ordem do script
 
-# instala os pacotes específicos do Gnome
+# pacotes específicos do Gnome
 sudo pacman -S baobab gdm gnome-backgrounds gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-color-manager gnome-contacts gnome-control-center gnome-disk-utility gnome-font-viewer gnome-keyring gnome-logs gnome-menus gnome-remote-desktop gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-system-monitor gnome-tweaks gnome-user-share gnome-weather gvfs gvfs-afc gvfs-dnssd gvfs-google gvfs-onedrive gvfs-smb gvfs-wsdd loupe nautilus sushi tecla tracker3-miners xdg-desktop-portal-gnome xdg-user-dirs-gtk
 
-# instala pacotes da nvidia
+# pacotes da nvidia
 sudo pacman -S nvidia nvidia-utils nvidia-settings
 
-# instala o Kitty como terminal emulator
+# Kitty como terminal emulator
 sudo pacman -S kitty
 
-# instala as fontes
+# fontes
 sudo pacman -S ttf-cascadia-code-nerd ttf-cascadia-mono-nerd
 
-# instala o gerenciador de pacotes aur
+# gerenciador de pacotes aur
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd ..
 rm -rf yay
 
-# instala pacotes suplementares
+# pacotes suplementares
 sudo pacman -S git p7zip fzf ripgrep zsh zoxide neofetch curl nm-connection-editor wget
 
-# instala extensões do Gnome
+# extensões do Gnome
 yay -S gnome-shell-extension-dash-to-dock
 yay -S gnome-shell-extension-caffeine
 yay -S gnome-shell-extension-clipboard-indicator
 yay -S gnome-shell-extension-blur-my-shell
 
-# instala extensões do zsh
+# extensões do zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# considerar talvez substiuir pelo oh-my-posh
+# powerlevel10k está sendo abandonado, ao que parece
+# yay -S oh-my-posh
 git clone https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-completions.git $HOME/.oh-my-zsh/custom/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/Aloxaf/fzf-tab $HOME/.oh-my-zsh/custom/plugins/fzf-tab
 
-# instala os programas
+# programas
 sudo pacman -S firefox gvim code keepassxc remmina pavucontrol
 
-# instala dicionário
+# dicionário para o vim
 # https://archlinux.org/packages/extra/any/words/
 sudo pacman -S words
 
-# instala extensões do code-oss
+# extensões do code-oss
 code-oss --install-extension vscodevim.vim
 code-oss --install-extension vscode-icons-team.vscode-icons
 code-oss --install-extension oderwat.indent-rainbow
@@ -58,31 +61,28 @@ code-oss --install-extension s-nlf-fh.glassit
 # yay -S oreo-cursors-git
 rm -rf $HOME/.icons
 mkdir $HOME/.icons/
-cp -r $HOME/arch-gnome/dotfiles/.icons/defaults $HOME/.icons/
+cp -rv $HOME/arch-gnome/dotfiles/.icons/defaults $HOME/.icons/
 for f in $HOME/arch-gnome/dotfiles/.icons/*.tar.gz; do tar xfv "$f" -C $HOME/.icons/; done
 
 # copia o meu tema personalizado
 mkdir $HOME/.themes
-cp -r $HOME/arch-gnome/dotfiles/themes/* $HOME/.themes
+cp -rv $HOME/arch-gnome/dotfiles/themes/* $HOME/.themes
 
 # clones para instalar os temas do sistema
 mkdir -p $HOME/GitHub
 cd $HOME/GitHub
 # tema do grub
-git clone https://github.com/vinceliuice/grub2-themes
+# git clone https://github.com/vinceliuice/grub2-themes
 # temas do sistema
-git clone https://github.com/vinceliuice/WhiteSur-gtk-theme
+# git clone https://github.com/vinceliuice/WhiteSur-gtk-theme
 # sudo ./install.sh -t whitesur -i color -s 1080p -b
-git clone https://github.com/vinceliuice/Orchis-theme
-git clone https://github.com/EliverLara/Nordic
+# # git clone https://github.com/vinceliuice/Orchis-theme
+# # git clone https://github.com/EliverLara/Nordic
 # ícones do sistema
 wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
-git clone https://github.com/bikass/kora
-cd kora
-mv kora* $HOME/.local/share/icons
-
-# carrega as configurações para o gnome
-dconf load / < $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
+# # git clone https://github.com/bikass/kora
+# # cd kora
+# # mv kora* $HOME/.local/share/icons
 
 # https://github.com/StevenBlack/hosts
 curl -o $HOME/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts
@@ -119,4 +119,7 @@ cp EXTRA\ MODS/Homepage\ mods/Remove\ text\ from\ homepage\ shortcuts/remove_hom
 cp EXTRA\ MODS/Tabs\ Bar\ Mods/Tabs\ -\ reversed\ background\ color/reversed_tabs_bg_color.css $HOME/.mozilla/firefox/firefox-themes
 cp EXTRA\ MODS/Tabs\ Bar\ Mods/Tabs\ -\ selected\ tabs\ static\ width/selected_tabs_static_width.css $HOME/.mozilla/firefox/firefox-themes
 cp EXTRA\ MODS/Icon\ and\ Button\ Mods/uBlock\ icon\ change/ublock-icon-change.css $HOME/.mozilla/firefox/firefox-themes
+
+# carrega as configurações para o gnome
+dconf load / < $HOME/arch-gnome/dotfiles/config/dconf/user-settings.conf
 

@@ -59,6 +59,7 @@ alias arq="ls -lah | grep ^-rw"
 alias pfless="fzf --preview='less {}' --bind up:preview-page-up,down:preview-page-down"
 alias pfbat="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias vim="vim -S ~/.config/vim/vimrc"
+alias odia="vim ~/Documents/dia.txt"
 
 alias orfaos="pacman -Qqtd"
 alias orfaos_remove="sudo pacman -Rns $(pacman -Qqdt)"

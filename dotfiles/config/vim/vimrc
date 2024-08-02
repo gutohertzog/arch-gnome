@@ -55,7 +55,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'voldikss/vim-floaterm'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'dense-analysis/ale'
-"Plug 'maxboisvert/vim-simple-complete'
 " para testar
 "Plug 'ycm-core/YouCompleteMe'
 "Plug 'TaDaa/vimade'
@@ -192,11 +191,6 @@ map <Space>hs <Nop>
 map <Space>hp <Nop>
 map ]c <Nop>
 map [c <Nop>
-" }}}
-
-" vim-simple-complete {{{
-"set complete-=t
-"set complete-=i
 " }}}
 
 " }}}
@@ -364,7 +358,11 @@ set foldmethod=manual
 " }}}
 " ATALHOS  ---------------------------------------------------------------- {{{
 
+" atalhos para o vimrc
 nnoremap <Leader>vim :e $MYVIMRC<CR>
+nnoremap <Leader>so :source $MYVIMRC<CR>
+
+nnoremap <Leader>qq :wqa<CR>
 
 " desativa {{{
 nnoremap <Space> <Nop>
@@ -379,8 +377,6 @@ no <Right> <Nop>
 nnoremap Y y$
 
 " salvamentos {{{
-nnoremap <Leader>so :source $MYVIMRC<CR>
-
 inoremap <C-s> <Esc>:w<CR>a
 xnoremap <C-s> <Esc>:w<CR>
 nnoremap <C-s> :w<CR>
@@ -481,6 +477,4 @@ set t_RV=
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
-
-let g:loaded_vim_simple_complete = 0
 " }}}
